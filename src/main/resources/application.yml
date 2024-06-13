@@ -3,3 +3,16 @@ spring:
     properties:
       hibernate:
         show_sql: true
+
+  h2:
+    console:
+      enabled: true
+
+  profiles:
+    include: oauth
+
+
+server:
+  servlet:
+    encoding:
+      force-response: true
