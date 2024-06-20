@@ -1,0 +1,33 @@
+spring:
+  session:
+    store-type: jdbc
+
+  profiles:
+    include: oauth
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+  h2:
+    console:
+      enabled: true
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: test
+            client-secret: test
+            scope: profile,email
+
+
+server:
+  servlet:
+    encoding:
+      force-response: true
+
+logging:
+  level:
+    root: info
