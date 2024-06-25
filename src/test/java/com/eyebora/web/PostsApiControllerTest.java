@@ -3,43 +3,36 @@ package com.eyebora.web;
 import com.eyebora.domain.post.Posts;
 import com.eyebora.domain.post.PostsRepository;
 import com.eyebora.web.dto.PostsSaveRequestDto;
-import org.junit.jupiter.api.AfterEach;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
+@AutoConfigureMockMvc
 public class PostsApiControllerTest {
 
-    @LocalServerPort
-    private int port;
-
     @Autowired
-    private TestRestTemplate restTemplate;
+    private MockMvc mockMvc;
 
     @Autowired
     private PostsRepository postsRepository;
 
-    @AfterEach
-    public void tearDown() throws Exception{
-        postsRepository.deleteAll();
-    }
-
     @Test
     @DisplayName("Posts 등록된다.")
-    public void test_postCreate() {
+    @WithMockUser(roles = "USER")
+    public void test_postCreate() throws Exception{
         // given
         String expectedTitle = "title";
         String expectedContent = "content";
@@ -51,19 +44,22 @@ public class PostsApiControllerTest {
                 .author("author")
                 .build();
 
-        String url = "http://localhost:"+port+"/api/v1/posts";
+        String url = "/api/v1/posts";
 
         //when
-        ResponseEntity<Long> responseEntity
-                = restTemplate.postForEntity(url,requestDto,Long.class);
-
-        //then
-        assertThat( responseEntity.getStatusCode() ).isEqualTo(HttpStatus.OK);
-        assertThat( responseEntity.getBody() ).isGreaterThan( 0L );
+        mockMvc.perform(
+                        post(url)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(new ObjectMapper().writeValueAsString(requestDto) )
+                )
+                .andExpect(status().isOk());
 
         List<Posts> postsList = postsRepository.findAll();
 
+        //then
         assertThat( postsList.get(0).getTitle() ).isEqualTo(expectedTitle);
         assertThat( postsList.get(0).getContent() ).isEqualTo(expectedContent);
     }
+
+
 }
