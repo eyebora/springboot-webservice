@@ -43,4 +43,4 @@ bin/
 
 ##
 application-oauth.yml
-application-real-*.yml
+application-real*.yml
