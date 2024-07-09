@@ -17,7 +17,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: REAL
     permissions:
       contents: read
 
@@ -37,14 +36,6 @@ jobs:
     - name: Build with Gradle Wrapper
       run: ./gradlew clean build
 
-    ##- name: env echo
-    ##  run: echo "111111"
-
-    ##- name: env echo env
-    ##  run: |
-    ##    echo "access:: ${{ secrets.AWS_ACCESS_KEY }}"
-    ##    echo "secret:: ${{ secrets.AWS_SECRET_KEY }}"
-
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
@@ -55,6 +46,8 @@ jobs:
     #
     # - name: Build with Gradle 8.5
     #   run: gradle build
+
+
     # 전송할 파일을 담을 디렉토리 생성
     - name: Make Directory for deliver
       run: mkdir deploy
@@ -81,8 +74,6 @@ jobs:
     permissions:
       contents: write
 
-
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 20
@@ -90,11 +81,6 @@ jobs:
       with:
         java-version: '20'
         distribution: 'corretto'
-
-    - name: env echo env
-      run: |
-        echo "access:: ${{ secrets.AWS_ACCESS_KEY }}"
-        echo "secret:: ${{ secrets.AWS_SECRET_KEY }}"    
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
