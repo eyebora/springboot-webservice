@@ -70,8 +70,8 @@ jobs:
     # S3 Bucket으로 copy
     - name: Deliver to AWS S3
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
       run:  aws s3 cp ./eyebora32-webservice-build.zip s3://eyebora32-webservice-build --region ap-northeast-2 --acl private
             
 
