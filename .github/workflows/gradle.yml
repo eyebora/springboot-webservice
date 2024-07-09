@@ -76,8 +76,7 @@ jobs:
             aws s3 cp \
             --region ap-northeast-2 \
             --acl private \ 
-            ./eyebora32-webservice-build.zip \
-            s3://arn:aws:s3:ap-northeast-2:654654623215:accesspoint/eyebora32-webservice-build-access
+            ./eyebora32-webservice-build.zip s3://eyebora32-webservice-build
 
   dependency-submission:
 
