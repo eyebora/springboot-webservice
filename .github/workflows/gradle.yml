@@ -74,8 +74,8 @@ jobs:
 
     - name: env echo env
       run: |
-        echo "access:: ${{ secret.AWS_ACCESS_KEY }}"
-        echo "secret:: ${{ secret.AWS_SECRET_KEY }}"    
+        echo "access:: ${{ secrets.AWS_ACCESS_KEY }}"
+        echo "secret:: ${{ secrets.AWS_SECRET_KEY }}"    
 
     # Generates and submits a dependency graph, enabling Dependabot Alerts for all project dependencies.
     # See: https://github.com/gradle/actions/blob/main/dependency-submission/README.md
