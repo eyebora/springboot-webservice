@@ -74,9 +74,10 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
             aws s3 cp \
+            ./eyebora32-webservice-build.zip s3://eyebora32-webservice-build \
             --region ap-northeast-2 \
             --acl private \ 
-            ./eyebora32-webservice-build.zip s3://eyebora32-webservice-build
+            
 
   dependency-submission:
 
