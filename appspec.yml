@@ -18,7 +18,7 @@ permissions:
     type:
       - file
 
-
+##
 hook:
   ApplicationStart:
     - location : /home/ec2-user/app/step2/deploy.sh
