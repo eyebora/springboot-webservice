@@ -63,7 +63,9 @@ jobs:
       run: cp -R ./script ./deploy/
 
     - name: display file
-      run : ls -lrt
+      run : >
+        ls -lrt
+        ls -lrt ./deploy/
 
     # 압축파일 형태로 전달 ..
     - name: Make zip file
