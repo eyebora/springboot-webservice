@@ -9,15 +9,10 @@ permissions:
     pattern: "**"
     owner: ec2-user
     group: ec2-user
-  - object: /
-    pattern: "*.sh"
-    mode: 700
-    type:
-      - file
 
 ##
 hook:
   ApplicationStart:
-    - location : /home/ec2-user/app/step2/deploy.sh
+    - location : deploy.sh
       timeout: 60
       runas: ec2-user
