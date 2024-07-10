@@ -66,6 +66,19 @@ jobs:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
       run:  aws s3 cp ./eyebora32-webservice-build.zip s3://eyebora32-webservice-build --region ap-northeast-2 --acl private
+
+    # Deploy
+    - name: Deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      run: |
+        aws deploy create-deployment \
+        --application-name eyebora32-webservice-app \
+        --deployment-group-name eyebora32-webservice-group \
+        --file-exists-behavior OVERWRITE \
+        --s3-location bucket=eyebora32-webservice-build ,bundleType=zip,key=eyebora32-webservice-build.zip \
+        --region ap-northeast-2  
             
 
   dependency-submission:
