@@ -63,7 +63,7 @@ jobs:
       run: cp -R ./script ./deploy/
 
     - name: display file
-      run : >
+      run : |
         ls -lrt
         ls -lrt ./deploy/
 
