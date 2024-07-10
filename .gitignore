@@ -9,6 +9,7 @@ build/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/dbnavigator.xml
 *.iws
 *.iml
 *.ipr
@@ -44,3 +45,4 @@ bin/
 ##
 application-oauth.yml
 application-real*.yml
+
