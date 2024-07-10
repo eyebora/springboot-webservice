@@ -77,7 +77,7 @@ jobs:
         --application-name eyebora32-webservice-app 
         --deployment-group-name eyebora32-webservice-group 
         --file-exists-behavior OVERWRITE 
-        --s3-location bucket=eyebora32-webservice-build ,bundleType=zip,key=eyebora32-webservice-build.zip 
+        --s3-location bucket=eyebora32-webservice-build,bundleType=zip,key=eyebora32-webservice-build.zip 
         --region ap-northeast-2  
             
 
