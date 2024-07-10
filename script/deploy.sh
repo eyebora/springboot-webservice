@@ -3,7 +3,7 @@
 REPOSITORY=/home/ec2-user/app/step2
 PROJECT_NAME=springboot-webservice
 
-cd $REPOSITORY/$PROJECT_NAME
+##cd $REPOSITORY/$PROJECT_NAME
 
 ##echo "> Git Pull"
 ##git pull

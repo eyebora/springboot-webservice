@@ -12,6 +12,6 @@ permissions:
 
 ##
 hook:
-  AfterInstall:
+  ApplicationStart:
     - location: deploy.sh
       timeout: 180
