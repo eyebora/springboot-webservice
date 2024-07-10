@@ -18,7 +18,10 @@
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="26214d31-5831-40ea-bdcc-a8f0b294c37a">
       <console name="RDS-MariaDB" type="STANDARD" schema="websvcdb" session="Main"><![CDATA[alter table users default charset = utf8;
- ALTER TABLE users CONVERT TO character SET utf8;]]></console>
+ ALTER TABLE users CONVERT TO character SET utf8;
+
+
+select * from users;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
